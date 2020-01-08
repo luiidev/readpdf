@@ -1,0 +1,18 @@
+id: 5670
+name: readpdf
+environments:
+    production:
+        domain: textract.ezforms.pe
+        memory: 1024
+        cli-memory: 512
+        build:
+            - 'composer install --no-dev'
+            - 'php artisan event:cache'
+            - 'npm ci && npm run prod && rm -rf node_modules'
+    staging:
+        memory: 1024
+        cli-memory: 512
+        build:
+            - 'composer install'
+            - 'php artisan event:cache'
+            - 'npm ci && npm run dev && rm -rf node_modules'
